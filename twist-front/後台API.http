@@ -1,0 +1,212 @@
+POST  https://infinitywp.com/figurine/back_get_item.php HTTP/1.1
+content-type: application/json
+
+# {
+#     "message": "查不到此商品"
+# } -> 查不到商品之回傳直
+
+# {
+#     "id": "1",
+#     "title": "測試1",
+#     "text": "測試2",
+#     "category": "一番賞",
+#     "isshelves": "1",
+#     "image": "products\/android.png",
+#     "date": "2020-04-24 18:39:58",
+#     "money": "200",
+#     "amount": "20"
+#   } -> data_array的回傳直
+
+# 獲取所有商品項目
+
+###
+
+POST https://infinitywp.com/figurine/back_get_member.php HTTP/1.1
+content-type: application/json
+
+# {
+#     "email": "xc3500xc@gmail.com",
+#     "c_name": "老子沒錢",
+#     "phone": "0925193935",
+#     "money": "0",
+#     "bonus": "0"
+# } -> data_array的回傳直
+
+# null -> 表示目前無註冊的會員
+
+# 獲取所有會員資料
+
+###
+
+POST https://infinitywp.com/figurine/back_delete_item.php HTTP/1.1
+content-type: application/json
+
+{
+    "Id": 1
+}
+
+# {
+#   "message": "true"
+# } ->刪除商品成功之回傳直
+
+# {
+#   "message": "false"
+# } ->刪除商品失敗之回傳直
+
+# 刪除該編號之商品資料(※此舉連動3張表shop、img、prize都將刪除該編號之相關資料)
+
+###
+
+POST https://infinitywp.com/figurine/back_delete_prize.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 4
+}
+
+# {
+#   "message": "true"
+# } -> 刪除成功之回傳直
+
+# {
+#   "message": "false"
+# } -> 刪除失敗之回傳直
+
+###
+
+POST https://infinitywp.com/figurine/back_onshelves.php HTTP/1.1
+content-type: application/json
+
+{
+    "Id": 8
+}
+
+# {
+#   "message": "true"
+# } ->上架成功之回傳直
+
+# {
+#   "message": "false"
+# } ->上架失敗之回傳直
+
+# 更新該編號為上架狀態
+
+###
+
+POST https://infinitywp.com/figurine/back_offshelves.php HTTP/1.1
+content-type: application/json
+
+{
+    "Id": 8
+}
+
+# {
+#   "message": "true"
+# } ->下架成功之回傳直
+
+# {
+#   "message": "false"
+# } ->下架失敗之回傳直
+
+###
+# 更新該編號為下架狀態
+
+POST https://infinitywp.com/figurine/back_insert_prize.php HTTP/1.1
+content-type: application/json
+
+{
+    "Item": "瓜農",
+    "Amount": 20
+}
+
+# 目前無回傳直
+
+# 新增該商品、數量 使用方法為表單action(靜態)
+
+###
+
+POST https://infinitywp.com/figurine/back_insert_item.php HTTP/1.1
+content-type: application/json
+
+{
+    "Title": "瓜農",
+    "Text": "瓜農",
+    "Category": "商城",
+    "Money":200
+}
+
+# {
+#   "message": "加入成功"
+# } ->成功的回傳直
+
+# {
+#   "message": "加入失敗"
+# } ->失敗的回傳直
+
+# 新增商品資料
+
+###
+
+POST https://infinitywp.com/figurine/back_insert_img.php HTTP/1.1
+
+# ???.png檔案已存在 -> 檔案已存在之回傳直
+
+# 上傳成功 -> 成功回傳直
+
+# 上傳失敗 -> 失敗回傳直
+
+# 錯誤代碼 1 or UPLOAD_ERR_INI_SIZE -> 上傳的文件超過了 php.ini 中 upload_max_filesize選項限制的值。
+#         2 or UPLOAD_ERR_FORM_SIZE -> 上傳文件的大小超過了 HTML 表單中 MAX_FILE_SIZE 選項指定的值。
+#         3 or UPLOAD_ERR_PARTIAL -> 文件只有部分被上傳。
+#         4 or UPLOAD_ERR_NO_FILE -> 沒有文件被上傳。
+#         6 or UPLOAD_ERR_NO_TMP_DIR -> 找不到臨時文件夾。
+#         7 or UPLOAD_ERR_CANT_WRITE -> 文件寫入失敗。
+
+# 選擇圖片按鈕中擺放此url
+
+###
+POST https://127.0.0.1/API/example/sample_All_CreateOrder.php HTTP/1.1
+Content-Type: application/json
+
+[  
+  {
+    "Uid" : 3,
+    "Name" : "500點",
+    "Size" : "500",
+    "Qat" : "2"
+  },
+  {
+    "Uid" : 3,
+    "Name" : "1000點",
+    "Size" : "1000",
+    "Qat" : "3"
+  },
+  {
+    "Uid" : 3,
+    "Name" : "5000點",
+    "Size" : "5000",
+    "Qat" : "1"
+  }
+]
+
+
+###
+
+
+POST https://infinitywp.com/figurine/back_insert_prize.php HTTP/1.1
+Content-Type: application/json
+
+[
+  {
+    "Item" : "2000",
+    "Amount" : "2"
+  },
+  {
+    "Item" : "",
+    "Amount" : ""
+  },
+  {
+    "Item" : "4000",
+    "Amount" : "5"
+  }
+]

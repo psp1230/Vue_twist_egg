@@ -1,0 +1,290 @@
+#@APIUrl =  https://infinitywp.com
+@APIUrl =  http://127.0.0.1:8000
+
+###
+POST {{APIUrl}}/figurine/front_get_item.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Category" : "極運賞"
+}
+###
+
+# {
+#     "id": "2",
+#     "title": "瓜農",
+#     "image": "products\/1587975257.png",
+#     "money": "200"
+# } -> 成功查詢並回傳的值
+
+# {
+#     "message": "查無此商品"
+# } -> 失敗查詢(無商品)之回傳直
+
+# 獲取所有商品資料
+
+###
+
+POST {{APIUrl}}/figurine/front_get_prize_quantity.php HTTP/1.1
+content-type: application/json
+
+{
+    "Shopid": "15"
+}
+
+# [
+#     {
+#         "id": "3",
+#         "stock_quantity": "27",
+#         "shopid": "2"
+#     }
+# ] -> 獲取獎品數量之回傳直
+
+# {
+#   "message": "查不到此商品"
+# } ->無該編號之商品的回傳直
+
+# 獲取該扭蛋的商品之庫存資訊
+
+###
+
+POST {{APIUrl}}/figurine/front_join.php HTTP/1.1
+content-type: application/json
+
+{
+    "Fb_id": "123123123",
+    "Useremail" : "xc3500xc@gmail.com",
+    "Password" : "as523367",
+    "Username" : "123"
+}
+
+# 註冊帳號
+
+###
+
+POST {{APIUrl}}/figurine/front_login.php HTTP/1.1
+content-type: application/json
+
+{
+    "Useremail": "ivanlin1995@yahoo.com.tw"
+}
+
+# 登入帳號
+
+###
+
+#先別做這個還未做抽獎紀錄
+
+POST {{APIUrl}}/figurine/front_lottery.php HTTP/1.1
+content-type: application/json
+
+{
+    "Uid" : 3,
+    "Number": 5,
+    "Shopid" : 3
+}
+
+# [
+#     {"id":"2","prize":"沒錢","img":"products\/1587975259.png"},
+#     {"id":"1","prize":"2000","img":"products\/1587975258.png"},
+#     {"id":"2","prize":"沒錢","img":"products\/1587975259.png"},
+#     {"id":"2","prize":"沒錢","img":"products\/1587975259.png"},
+#     {"id":"1","prize":"2000","img":"products\/1587975258.png"}
+# ] -> 抽出該獎品之內容資訊之回傳直
+
+# 獎品已全數抽完! -> 抽完的回傳直
+
+# 抽取扭蛋商品，依照類別、數量來抽取
+
+###
+
+POST {{APIUrl}}/figurine/front_search.php HTTP/1.1
+content-type: application/json
+
+{
+    "Search" : "測"
+}
+
+# 搜尋關鍵字
+
+###
+
+POST {{APIUrl}}/figurine/front_update_member.php HTTP/1.1
+content-type: application/json
+
+{
+    "Useremail" : "xc3500xc@gmail.com",
+    "Name" : "老子沒錢",
+    "Phone" : "0925193935",
+    "Addr" : "桃園縣平鎮區龍安路31巷25號"
+}
+
+# {
+#   "message": "更新成功"
+# } -> 更新該名使用者的資訊
+
+# 更新會員資料
+
+###
+
+POST {{APIUrl}}/figurine/front_sort.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Category" : "商城",
+    "Curtain" : 1,
+    "Sort" : "date",
+    "Nums" : 0
+}
+
+# [
+#   {
+#     "id": "2",
+#     "title": "索龍",
+#     "image": "products\/1587975259.png",
+#     "money": "300",
+#     "addr": null
+#   },
+#   {
+#     "id": "1",
+#     "title": "魯夫",
+#     "image": "products\/1587975257.png",
+#     "money": "200",
+#     "addr": null
+#   }
+# ] -> money排序 (sort->money)
+
+###
+
+POST {{APIUrl}}/figurine/front_join_cart.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Userid" : 3,
+    "Shopid" : 11,
+    "Prizeid" : 2,
+    "Qat" :2
+}
+
+# {
+#   "message": "已加入購物車"
+# } -> 回傳直
+
+# {
+#   "message": "加入購物車失敗"
+# } -> 回傳直
+
+###
+
+POST {{APIUrl}}/figurine/front_update_cart.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Userid" : 3,
+    "Shopid" : 7,
+    "Qat" :2
+}
+
+# 無回傳直
+
+###
+
+POST {{APIUrl}}/figurine/front_delete_cart.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Userid" : 3,
+    "Shopid" : 8
+}
+
+# 無回傳直
+
+###
+
+POST {{APIUrl}}/figurine/front_buy.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Userid" : 3,
+    "Sum" : 1308,
+    "Shopid" : [7,8,9,10,11],
+    "Imgid" : [1,1,1,1,1],
+    "Qat" : [2,2,2,2,2]
+}
+
+# 下單
+
+###
+
+POST {{APIUrl}}/figurine/front_get_cart.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Userid" : 12
+}
+
+# null-> 購物車內沒東西
+
+# [
+#   {
+#     "id": "10",
+#     "shopid": "7",
+#     "quantity": "2",
+#     "status": "未付款"
+#   }
+# ] -> 購物車內的東西
+
+###
+
+POST {{APIUrl}}/figurine/front_get_home_img.php HTTP/1.1
+Content-Type: application/json
+
+#獲取主頁之輪播圖、各路口圖、推薦
+
+###
+
+POST {{APIUrl}}/API/local/example/sample_CvsMap.php HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST {{APIUrl}}/API/local/example/sample_CvsCreateShippingOrder.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Cvsid": "138480",
+    "GoodsName":"123",
+    "SenderName":"周宏明",
+    "SenderPhone":"034607246",
+    "SenderCellPhone":"0925193935",
+    "ReceiverName":"莊博勝",
+    "ReceiverPhone":"034607246",
+    "ReceiverCellPhone":"0925193935",
+    "ReceiverEmail":"cx3500cx@gmail.com",
+    "TradeDesc":"ss",
+    "Money":1000
+}
+
+###
+
+
+POST {{APIUrl}}/figurine/front_get_member.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 12
+}
+
+###
+POST {{APIUrl}}/figurine/front_get_series.php HTTP/1.1
+Content-Type: application/json
+
+###
+POST {{APIUrl}}/figurine/front_series_conn.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "Category" : "極運賞",
+    "Menuid" : 3
+}
+

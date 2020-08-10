@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>直接執行 html 程式碼</title>
+  </head>
+  <body>
+    <textarea style="width:300px;height:200px;" id="txtCode"></textarea><br />
+    <input type="button" value="直接執行" id="btnRun" />
+    <script>
+      document.getElementById("btnRun").onclick = function() {
+        var runHtml = document.getElementById("txtCode").value;
+        if (runHtml) {
+          var win = window.open("", "執行視窗");
+          win.document.open();
+          win.document.write(runHtml);
+          win.document.close();
+        } else {
+          alert("請輸入!");
+        }
+      };
+    </script>
+  </body>
+</html>
